@@ -1,0 +1,195 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "eastus"
+        },
+        "aksClusterName": {
+            "value": "aks-23g4wsrucx4q4"
+        },
+        "aksClusterDnsPrefix": {
+            "value": "aks-23g4wsrucx4q4"
+        },
+        "aksClusterTags": {
+            "value": {
+                "resourceType": "AKS Cluster",
+                "createdBy": "ARM Template"
+            }
+        },
+        "aksClusterNetworkPlugin": {
+            "value": "azure"
+        },
+        "aksClusterNetworkPolicy": {
+            "value": "azure"
+        },
+        "aksClusterPodCidr": {
+            "value": "10.244.0.0/16"
+        },
+        "aksClusterServiceCidr": {
+            "value": "10.2.0.0/16"
+        },
+        "aksClusterDnsServiceIP": {
+            "value": "10.2.0.10"
+        },
+        "aksClusterDockerBridgeCidr": {
+            "value": "172.17.0.1/16"
+        },
+        "aksClusterLoadBalancerSku": {
+            "value": "standard"
+        },
+        "aksClusterSkuTier": {
+            "value": "Free"
+        },
+        "aksClusterKubernetesVersion": {
+            "value": "1.19.7"
+        },
+        "aksClusterAdminUsername": {
+            "value": "azureuser"
+        },
+        "aksClusterSshPublicKey": {
+            "value": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqu10HlRC3HuwV8tAuXvHzgCX944FgPSuE6Bwyu7iOcnmhCIRMZVlqr1SJdYRByuEOm7OZwl5a4vHXw4+VxWnbySt2aV+piP4Z0/0OI/SbbiaOKA9uqFSz/nnODIE3fL4UWCXDyS8i+ifLSBx9M8A3r+TvDpZAVxm0inSvGAwewIJB6hQA5uBcqTeLZ260yJD4QhACDgHofOIIC1GO0v0BDxmiPSF0YRdPK9RMA7gNZnL55B+hcIjch38YuFW+i02GCZrsUpzLZSRmbxbxNCZXGNX8hX/0iqrChpBAV4Iv4iTsy3ChwMyEF7ay/dJTSoWNSsDMpjldwazO0o7TTc43Q== rsa-key-aks"
+        },
+        "aadEnabled": {
+            "value": false
+        },
+        "aadProfileTenantId": {
+            "value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+        },
+        "aadProfileAdminGroupObjectIDs": {
+            "value": []
+        },
+        "aksClusterEnablePrivateCluster": {
+            "value": true
+        },
+        "aadProfileManaged": {
+            "value": false
+        },
+        "aadProfileEnableAzureRBAC": {
+            "value": false
+        },
+        "nodePoolName": {
+            "value": "nodepool1"
+        },
+        "nodePoolVmSize": {
+            "value": "Standard_DS3_v2"
+        },
+        "nodePoolOsDiskSizeGB": {
+            "value": 100
+        },
+        "nodePoolCount": {
+            "value": 5
+        },
+        "nodePoolOsType": {
+            "value": "Linux"
+        },
+        "nodePoolMaxPods": {
+            "value": 30
+        },
+        "nodePoolMaxCount": {
+            "value": 5
+        },
+        "nodePoolMinCount": {
+            "value": 3
+        },
+        "nodePoolEnableAutoScaling": {
+            "value": true
+        },
+        "nodePoolScaleSetPriority": {
+            "value": "Regular"
+        },
+        "nodePoolNodeLabels": {
+            "value": {}
+        },
+        "nodePoolNodeTaints": {
+            "value": []
+        },
+        "nodePoolMode": {
+            "value": "System"
+        },
+        "nodePoolType": {
+            "value": "VirtualMachineScaleSets"
+        },
+        "nodePoolAvailabilityZones": {
+            "value": []
+        },
+        "virtualNetworkName": {
+            "value": "aks-23g4wsrucx4q4Vnet"
+        },
+        "virtualNetworkAddressPrefixes": {
+            "value": "10.0.0.0/8"
+        },
+        "aksSubnetName": {
+            "value": "AksSubnet"
+        },
+        "aksSubnetAddressPrefix": {
+            "value": "10.0.0.0/16"
+        },
+        "logAnalyticsWorkspaceName": {
+            "value": "oss-demo"
+        },
+        "logAnalyticsSku": {
+            "value": "PerGB2018"
+        },
+        "logAnalyticsRetentionInDays": {
+            "value": 60
+        },
+        "vmSubnetName": {
+            "value": "VmSubnet"
+        },
+        "vmSubnetAddressPrefix": {
+            "value": "10.1.0.0/24"
+        },
+        "vmName": {
+            "value": "TestVm"
+        },
+        "vmSize": {
+            "value": "Standard_DS3_v2"
+        },
+        "imagePublisher": {
+            "value": "Canonical"
+        },
+        "imageOffer": {
+            "value": "UbuntuServer"
+        },
+        "imageSku": {
+            "value": "18.04-LTS"
+        },
+        "authenticationType": {
+            "value": "password"
+        },
+        "vmAdminUsername": {
+            "value": "azureuser"
+        },
+        "vmAdminPasswordOrKey": {
+            "value": null
+        },
+        "diskStorageAccounType": {
+            "value": "Premium_LRS"
+        },
+        "numDataDisks": {
+            "value": 1
+        },
+        "osDiskSize": {
+            "value": 50
+        },
+        "dataDiskSize": {
+            "value": 50
+        },
+        "dataDiskCaching": {
+            "value": "ReadWrite"
+        },
+        "blobStorageAccountName": {
+            "value": "blob23g4wsrucx4q4"
+        },
+        "blobStorageAccountPrivateEndpointName": {
+            "value": "BlobStorageAccountPrivateEndpoint"
+        },
+        "bastionSubnetAddressPrefix": {
+            "value": "10.1.1.0/26"
+        },
+        "bastionHostName": {
+            "value": "aks-23g4wsrucx4q4Bastion"
+        }
+    }
+}
