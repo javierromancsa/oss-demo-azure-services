@@ -565,10 +565,7 @@
               "protocol": "Tcp",
               "sourcePortRange": "*",
               "sourceAddressPrefix": "GatewayManager",
-              "destinationPortRanges": [
-                "443",
-                "4443"
-              ],
+              "destinationPortRange": "443",
               "destinationAddressPrefix": "*",
               "access": "Allow",
               "priority": 120,
@@ -576,22 +573,35 @@
             }
           },
           {
-            "name": "bastionInDeny",
+            "name": "allowazureloadbalancerin",
+            "properties": {
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "443",
+              "sourceAddressPrefix": "AzureLoadBalancer",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 130,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "allowbastionhostcommunication",
             "properties": {
               "protocol": "*",
               "sourcePortRange": "*",
-              "destinationPortRange": "*",
-              "sourceAddressPrefix": "*",
-              "destinationAddressPrefix": "*",
-              "access": "Deny",
-              "priority": 900,
+              "destinationPortRanges": [ "8080", "5701"],
+              "sourceAddressPrefix": "VirtualNetwork",
+              "destinationAddressPrefix": "VirtualNetwork",
+              "access": "Allow",
+              "priority": 140,
               "direction": "Inbound"
             }
           },
           {
             "name": "bastionVnetOutAllow",
             "properties": {
-              "protocol": "Tcp",
+              "protocol": "*",
               "sourcePortRange": "*",
               "sourceAddressPrefix": "*",
               "destinationPortRanges": [
@@ -605,6 +615,35 @@
             }
           },
           {
+            "name": "Allowbastiononcommunication",
+            "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "VirtualNetwork",
+              "destinationPortRanges": [
+                "8080",
+                "5701"
+              ],
+              "destinationAddressPrefix": "VirtualNetwork",
+              "access": "Allow",
+              "priority": 110,
+              "direction": "Outbound"
+            }
+          },
+          {
+            "name": "Allowbastiononcommunication",
+            "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationPortRange": "80",
+              "destinationAddressPrefix": "Internet",
+              "access": "Allow",
+              "priority": 120,
+              "direction": "Outbound"
+            }
+          },
+          {
             "name": "bastionAzureOutAllow",
             "properties": {
               "protocol": "Tcp",
@@ -613,7 +652,7 @@
               "destinationPortRange": "443",
               "destinationAddressPrefix": "AzureCloud",
               "access": "Allow",
-              "priority": 120,
+              "priority": 130,
               "direction": "Outbound"
             }
           }
