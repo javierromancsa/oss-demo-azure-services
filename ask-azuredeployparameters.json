@@ -72,7 +72,7 @@
             "value": "nodepool1"
         },
         "nodePoolVmSize": {
-            "value": "Standard_DS3_v2"
+            "value": "Standard_DS2_v2"
         },
         "nodePoolOsDiskSizeGB": {
             "value": 100
@@ -126,7 +126,7 @@
             "value": "10.0.0.0/16"
         },
         "logAnalyticsWorkspaceName": {
-            "value": "oss-demo"
+            "value": "oss-demo-log"
         },
         "logAnalyticsSku": {
             "value": "PerGB2018"
@@ -165,7 +165,7 @@
             "value": null
         },
         "diskStorageAccounType": {
-            "value": "Premium_LRS"
+            "value": "Standard_LRS"
         },
         "numDataDisks": {
             "value": 1
