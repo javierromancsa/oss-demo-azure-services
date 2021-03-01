@@ -631,7 +631,7 @@
             }
           },
           {
-            "name": "Allowbastiononcommunication",
+            "name": "Allowbastionsession",
             "properties": {
               "protocol": "*",
               "sourcePortRange": "*",
