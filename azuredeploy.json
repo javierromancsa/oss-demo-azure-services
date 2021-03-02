@@ -207,6 +207,9 @@
         "osType": "Linux",
         "clusterDefinition": {
           "kind": "kafka",
+          "componentVersion": {
+                        "Kafka": "2.1"
+                    },
           "configurations": {
             "gateway": {
               "restAuthCredential.isEnabled": true,
