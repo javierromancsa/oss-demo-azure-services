@@ -1,47 +1,36 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "clusterName": {
-      "type": "string",
-      "defaultValue": "[concat('kusto', uniqueString(resourceGroup().id))]"
+      "value": "[concat('kusto', uniqueString(resourceGroup().id))]"
     },
     "databases_kustodb_name": {
-          "type": "string",
-          "defaultValue": "movies",
-          "metadata": {
-            "description": "Name of the database to create"
-          }
-      },
+      "value": "movies"
+    },
     "dataManagementPublicIpName": {
-      "type": "string",
-      "defaultValue": "dm-pip"
+      "value": "dm-pip"
     },
     "enginePublicIpName": {
-      "type": "string",
-      "defaultValue": "engine-pip"
+      "value": "engine-pip"
     },
     "location": {
-      "type": "string",
-      "defaultValue": "eastus",
-      "metadata": {
-        "description": "Location for all resources."
-      }
+      "value": "[resourceGroup().location]"
     },
     "skuName": {
-      "type": "string",
-      "defaultValue": "Standard_D11_v2"
+      "value": "Standard_D11_v2"
     },
     "skuTier": {
-      "type": "string",
-      "defaultValue": "Standard"
+      "value": "Standard"
+    },
+    "capacity": {
+      "value": 2
     },
     "subnetName": {
-      "type": "string",
-      "defaultValue": "adx-subnet"
+      "value": "adx-subnet"
     },
     "virtualNetworkName": {
-      "type": "string",
-      "defaultValue": "vnet"
+      "value": "aks-23g4wsrucx4q4Vnet"
     }
   }
+}
