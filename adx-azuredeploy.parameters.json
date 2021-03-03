@@ -30,7 +30,7 @@
       "value": "adx-subnet"
     },
     "virtualNetworkName": {
-      "value": "aks-23g4wsrucx4q4Vnet"
+      "value": "oss-Vnet"
     }
   }
 }
