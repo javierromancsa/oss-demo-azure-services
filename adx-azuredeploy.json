@@ -49,6 +49,19 @@
   },
   "resources": [
     {
+          "name": "[concat(parameters('clusterName'), '/', parameters('databases_kustodb_name'))]",
+          "type": "Microsoft.Kusto/clusters/databases",
+          "apiVersion": "2020-06-14",
+          "location": "[parameters('location')]",
+          "dependsOn": [
+              "[resourceId('Microsoft.Kusto/clusters', parameters('clusterName'))]"
+          ],
+          "properties": {
+              "softDeletePeriodInDays": 365,
+              "hotCachePeriodInDays": 31
+          }
+      },
+    {
       "type": "Microsoft.Kusto/Clusters",
       "sku": {
         "name": "[parameters('skuName')]",
