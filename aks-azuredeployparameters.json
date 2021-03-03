@@ -5,12 +5,6 @@
         "location": {
             "value": "eastus"
         },
-        "aksClusterName": {
-            "value": "aks-23g4wsrucx4q4"
-        },
-        "aksClusterDnsPrefix": {
-            "value": "aks-23g4wsrucx4q4"
-        },
         "aksClusterTags": {
             "value": {
                 "resourceType": "AKS Cluster",
@@ -47,14 +41,8 @@
         "aksClusterAdminUsername": {
             "value": "azureuser"
         },
-        "aksClusterSshPublicKey": {
-            "value": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqu10HlRC3HuwV8tAuXvHzgCX944FgPSuE6Bwyu7iOcnmhCIRMZVlqr1SJdYRByuEOm7OZwl5a4vHXw4+VxWnbySt2aV+piP4Z0/0OI/SbbiaOKA9uqFSz/nnODIE3fL4UWCXDyS8i+ifLSBx9M8A3r+TvDpZAVxm0inSvGAwewIJB6hQA5uBcqTeLZ260yJD4QhACDgHofOIIC1GO0v0BDxmiPSF0YRdPK9RMA7gNZnL55B+hcIjch38YuFW+i02GCZrsUpzLZSRmbxbxNCZXGNX8hX/0iqrChpBAV4Iv4iTsy3ChwMyEF7ay/dJTSoWNSsDMpjldwazO0o7TTc43Q== rsa-key-aks"
-        },
         "aadEnabled": {
             "value": false
-        },
-        "aadProfileTenantId": {
-            "value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
         },
         "aadProfileAdminGroupObjectIDs": {
             "value": []
@@ -114,7 +102,7 @@
             "value": []
         },
         "virtualNetworkName": {
-            "value": "aks-23g4wsrucx4q4Vnet"
+            "value": "aks-Vnet"
         },
         "virtualNetworkAddressPrefixes": {
             "value": "10.0.0.0/8"
@@ -144,7 +132,7 @@
             "value": "TestVm"
         },
         "vmSize": {
-            "value": "Standard_DS3_v2"
+            "value": "Standard_DS2_v2"
         },
         "imagePublisher": {
             "value": "Canonical"
@@ -179,17 +167,11 @@
         "dataDiskCaching": {
             "value": "ReadWrite"
         },
-        "blobStorageAccountName": {
-            "value": "blob23g4wsrucx4q4"
-        },
         "blobStorageAccountPrivateEndpointName": {
             "value": "BlobStorageAccountPrivateEndpoint"
         },
         "bastionSubnetAddressPrefix": {
             "value": "10.1.1.0/26"
-        },
-        "bastionHostName": {
-            "value": "aks-23g4wsrucx4q4Bastion"
         }
     }
 }
