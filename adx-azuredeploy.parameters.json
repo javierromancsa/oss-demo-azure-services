@@ -30,7 +30,7 @@
     },
     "skuName": {
       "type": "string",
-      "defaultValue": "Standard_D13_v2"
+      "defaultValue": "Standard_D11_v2"
     },
     "skuTier": {
       "type": "string",
