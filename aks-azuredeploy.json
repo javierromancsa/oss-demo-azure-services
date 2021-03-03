@@ -288,7 +288,7 @@
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "aks-Vnet",
+      "defaultValue": "oss-Vnet",
       "type": "string",
       "metadata": {
         "description": "Specifies the name of the virtual network."
