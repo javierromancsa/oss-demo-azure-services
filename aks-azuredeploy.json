@@ -288,7 +288,7 @@
       }
     },
     "virtualNetworkName": {
-      "defaultValue": "[concat(parameters('aksClusterName'), 'Vnet')]",
+      "defaultValue": "aks-Vnet",
       "type": "string",
       "metadata": {
         "description": "Specifies the name of the virtual network."
