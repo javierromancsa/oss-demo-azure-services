@@ -27,7 +27,7 @@
             "value": "Standard_E2_v3"
         },
         "vnetName": {
-            "value": "aks-23g4wsrucx4q4Vnet"
+            "value": "oss-Vnet"
         },
         "subnetName": {
             "value": "hdinsightsubnet"
