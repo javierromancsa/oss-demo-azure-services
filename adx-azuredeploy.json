@@ -6,6 +6,13 @@
       "type": "string",
       "defaultValue": "[concat('kusto', uniqueString(resourceGroup().id))]"
     },
+    "databases_kustodb_name": {
+          "type": "string",
+          "defaultValue": "movies",
+          "metadata": {
+            "description": "Name of the database to create"
+          }
+      },
     "dataManagementPublicIpName": {
       "type": "string",
       "defaultValue": "dm-pip"
@@ -23,15 +30,19 @@
     },
     "skuName": {
       "type": "string",
-      "defaultValue": "Standard_D13_v2"
+      "defaultValue": "Standard_D11_v2"
     },
     "skuTier": {
       "type": "string",
       "defaultValue": "Standard"
     },
+    "capacity": {
+      "type": "int",
+      "defaultValue": "2"
+    },
     "subnetName": {
       "type": "string",
-      "defaultValue": "subnet"
+      "defaultValue": "adx-subnet"
     },
     "virtualNetworkName": {
       "type": "string",
@@ -44,6 +55,7 @@
     "nsgId": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]",
     "nsgName": "azureDataExplorerNsg",
     "publicIpAllocationMethod": "Static",
+    "subnetPrefix": "10.1.3.0/24",
     "subnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('virtualNetworkName'),parameters('subnetName'))]",
     "vnetId": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]"
   },
@@ -51,6 +63,7 @@
     {
           "name": "[concat(parameters('clusterName'), '/', parameters('databases_kustodb_name'))]",
           "type": "Microsoft.Kusto/clusters/databases",
+          "kind": "ReadWrite",
           "apiVersion": "2020-06-14",
           "location": "[parameters('location')]",
           "dependsOn": [
@@ -65,14 +78,16 @@
       "type": "Microsoft.Kusto/Clusters",
       "sku": {
         "name": "[parameters('skuName')]",
-        "tier": "[parameters('skuTier')]"
+        "tier": "[parameters('skuTier')]",
+        "capacity":"[parameters('capacity')]"
       },
       "name": "[parameters('clusterName')]",
       "apiVersion": "2020-06-14",
       "dependsOn": [
         "[variables('enginePublicIpId')]",
         "[variables('dataManagementPublicIpId')]",
-        "[variables('vnetId')]"
+        "[variables('subnetId')]",
+        "[variables('nsgId')]"
       ],
       "location": "[parameters('location')]",
       "properties": {
@@ -110,29 +125,20 @@
       }
     },
     {
-      "apiVersion": "2020-05-01",
-      "type": "Microsoft.Network/virtualNetworks",
-      "name": "[parameters('virtualNetworkName')]",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "name": "[concat(parameters('virtualNetworkName'),'/',parameters('subnetName'))]",
       "location": "[parameters('location')]",
-      "dependsOn": [ "[variables('nsgId')]" ],
+      "apiVersion": "2020-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups/', variables('nsgName'))]"
+      ],
       "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "10.0.0.0/16"
-          ]
-        },
-        "subnets": [
-          {
-            "name": "[parameters('subnetName')]",
-            "properties": {
-              "addressPrefix": "10.0.0.0/20",
-              "networkSecurityGroup": {
-                "id": "[variables('nsgId')]"
+        "addressPrefix": "[variables('subnetPrefix')]",
+        "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]",
+                "location": "[parameters('location')]"
               }
             }
-          }
-        ]
-      }
     },
     {
       "type": "Microsoft.Network/networkSecurityGroups",
@@ -142,19 +148,78 @@
       "properties": {
         "securityRules": [
           {
-            "name": "AllowHTTPS",
-            "properties": {
-              "description": "Allow access using HTTPS",
-              "protocol": "Tcp",
-              "sourcePortRange": "*",
-              "destinationPortRange": "443",
-              "sourceAddressPrefix": "*",
-              "destinationAddressPrefix": "*",
-              "access": "Allow",
-              "priority": 100,
-              "direction": "Inbound"
-            }
-          }
+                        "name": "adx1",
+                        "properties": {
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "443",
+                            "sourceAddressPrefix": "AzureDataExplorerManagement",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+          {
+                        "name": "adx2-health-monitor-eastus",
+                        "properties": {
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "443",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [
+                                "137.116.81.189",
+                                "104.46.110.170",
+                                "52.249.253.174"
+                            ],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "adx3",
+                        "properties": {
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "sourceAddressPrefix": "AzureLoadBalancer",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 120,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [
+                                "80",
+                                "443"
+                            ],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "adx4",
+                        "properties": {
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "[variables('subnetPrefix')]",
+                            "destinationAddressPrefix": "[variables('subnetPrefix')]",
+                            "access": "Allow",
+                            "priority": 130,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
         ]
       }
     }
