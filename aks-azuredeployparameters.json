@@ -41,6 +41,10 @@
         "aksClusterAdminUsername": {
             "value": "azureuser"
         },
+        "aksClusterSshPublicKey": {
+      "type": "string",
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCiyimszr2jr5q2o9V+qfwuDxtuOQIhIjJLXj0e5QgT7PJH6Z6yJflhHiHLL85B6QlbWLW04oloUMXkAkSxLySpXPnrvO+CEIpsYWrNcLBu+GqOhKEICcRnTXVXehTn71qy0pz/EG5XXhAK4zz+m4pSahU7itQPjsLFGZczjtB0b0CRZ5tTi4PIbq4+a4j9cVB1cxVgDP/35bHEWIttrhWpv5gFmvhsfUknmDqoY/5gDWrQlGO2I8SJUBcKTmXANc1pYO+i34Fx39GYGpsEf69t35FiVZ+O5n5YAAlXo98QgateJF5rluwtLYBci23uDfJSvSMgAdbcGJiSjcAMyZhxm6dL5ivEkstVjrwKm6J3y2lfxEGtAQbcLsJcCVVTJzVkXaw2BtSG6uWDcWjiBeJhpHCWXi2JdvK2OyyofUJnPfBvbEZi9ZBROlVoeQh2hPN55FVg8bhPEIvX14eJlRDBqVVTQhAdum3t2p0I2nOhvBWqsULgXcRFOuDK+A6lQpc= generated-by-azure"
+        },
         "aadEnabled": {
             "value": false
         },
