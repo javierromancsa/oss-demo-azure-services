@@ -40,6 +40,10 @@
       "type": "int",
       "defaultValue": "2"
     },
+    "subnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.1.3.0/24"
+    },
     "subnetName": {
       "type": "string",
       "defaultValue": "adx-subnet"
@@ -55,7 +59,6 @@
     "nsgId": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]",
     "nsgName": "azureDataExplorerNsg",
     "publicIpAllocationMethod": "Static",
-    "subnetPrefix": "10.1.3.0/24",
     "subnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('virtualNetworkName'),parameters('subnetName'))]",
     "vnetId": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]"
   },
@@ -133,7 +136,7 @@
         "[resourceId('Microsoft.Network/networkSecurityGroups/', variables('nsgName'))]"
       ],
       "properties": {
-        "addressPrefix": "[variables('subnetPrefix')]",
+        "addressPrefix": "[parameters('subnetPrefix')]",
         "networkSecurityGroup": {
                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]",
                 "location": "[parameters('location')]"
@@ -209,8 +212,8 @@
                             "protocol": "*",
                             "sourcePortRange": "*",
                             "destinationPortRange": "*",
-                            "sourceAddressPrefix": "[variables('subnetPrefix')]",
-                            "destinationAddressPrefix": "[variables('subnetPrefix')]",
+                            "sourceAddressPrefix": "[parameters('subnetPrefix')]",
+                            "destinationAddressPrefix": "[parameters('subnetPrefix')]",
                             "access": "Allow",
                             "priority": 130,
                             "direction": "Inbound",
