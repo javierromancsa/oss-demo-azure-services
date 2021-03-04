@@ -38,7 +38,7 @@
     },
     "capacity": {
       "type": "int",
-      "defaultValue": "2"
+      "defaultValue": 2
     },
     "subnetPrefix": {
       "type": "string",
